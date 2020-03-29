@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on </title>
+    <link>https://kubernetes-arm.com/posts/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:00:00 +0400</lastBuildDate>
+    
+	<atom:link href="https://kubernetes-arm.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ARM Support: Velero, Longhorn and the AWS-EBS-CSI-Driver</title>
+      <link>https://kubernetes-arm.com/posts/1/</link>
+      <pubDate>Sun, 29 Mar 2020 14:00:00 +0400</pubDate>
+      
+      <guid>https://kubernetes-arm.com/posts/1/</guid>
+      <description>Welcome to the blog! This is the first post and I wanted to talk about the initial projects started in the github projects.
+Velero ARM Support Currently Velero represents the quintessential backup and restore tool for Kubernetes, but support for Velero on ARM didn&amp;rsquo;t exist so I created a project on github to cover an initial implementation.
+I created Pull Request #2227 to add the basic ARM builds needed to pull ARM images of Velero, and the follow up is to enable ARM support for the Velero AWS Plugin.</description>
+    </item>
+    
+  </channel>
+</rss>

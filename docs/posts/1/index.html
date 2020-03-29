@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ARM Support: Velero, Longhorn and the AWS-EBS-CSI-Driver</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Raleway', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: gray;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://kubernetes-arm.com/css/main.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/scala.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.69.1" />
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">ARM Support: Velero, Longhorn and the AWS-EBS-CSI-Driver</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="/posts/">Posts</a></li>
+                            
+                                <li><a href="https://github.com/orgs/kubernetes-arm/projects">Projects</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/kubernetes-arm/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="mailto:info@kubernetes-arm.com"><i class="fa fa-envelope-o"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div>
+        <h2>ARM Support: Velero, Longhorn and the AWS-EBS-CSI-Driver</h2>
+        <h5></h5>
+        
+
+    </div>
+
+    <div align="start" class="content"><p>Welcome to the blog! This is the first post and I wanted to talk about the initial projects started in the <a href="https://github.com/orgs/kubernetes-arm/projects/">github projects</a>.</p>
+<h3 id="velero-arm-support">Velero ARM Support</h3>
+<p>Currently <a href="https://github.com/vmware-tanzu/velero">Velero</a> represents the quintessential backup and restore tool for <a href="https://kubernetes.io">Kubernetes</a>, but support for Velero on ARM didn&rsquo;t exist so I created <a href="https://github.com/orgs/kubernetes-arm/projects/1">a project on github to cover an initial implementation</a>.</p>
+<p>I created <a href="https://github.com/vmware-tanzu/velero/pull/2227">Pull Request #2227</a> to add the basic ARM builds needed to pull ARM images of Velero, and the follow up is to enable ARM support for the <a href="https://github.com/vmware-tanzu/velero-plugin-for-aws">Velero AWS Plugin</a>. <a href="https://aws.amazon.com/">AWS</a> seemed like a good place to start as I personally have operational knowledge of their <a href="https://aws.amazon.com/ec2/instance-types/a1/">ARM EC2 Instances</a>, but the intention after this will be to add projects for the <a href="https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure">Velero Azure Plugin</a> and <a href="https://github.com/vmware-tanzu/velero-plugin-for-gcp">GCP Plugin</a>.</p>
+<p>An added benefit of starting upstream work on the AWS plugin first is that it has the side effect of helping to enable <a href="https://min.io/">Minio</a> backend support for Velero on ARM as well.</p>
+<h3 id="aws-ebs-csi-driver-arm-support">AWS-EBS-CSI-Driver ARM Support</h3>
+<p>If you don&rsquo;t mind being tied down to a specific cloud provider implementation, the <a href="https://github.com/kubernetes-sigs/aws-ebs-csi-driver">aws-ebs-sci-driver</a> provides one of the simplest ways to enable persistent storage on an AWS cluster by using <a href="https://aws.amazon.com/ebs/">EBS</a>. Currently it doesn&rsquo;t support ARM though in the <a href="https://hub.docker.com/r/amazon/aws-ebs-csi-driver/tags">docker image builds</a> so I&rsquo;ve created <a href="https://github.com/orgs/kubernetes-arm/projects/3">a project to get that done</a>.</p>
+<h3 id="longhorn-arm-support">Longhorn ARM Support</h3>
+<p>Storage is a difficult story on an ARM based Kubernetes cluster right now, but even more difficult if your aim is to avoid cloud provider specific implementations. <a href="https://longhorn.io/">Longhorn</a> promises to provide cloud-native persistent block storage that can utilize the existing storage underlying the <a href="https://kubernetes.io/docs/concepts/architecture/nodes/">nodes</a> but <a href="https://github.com/longhorn/longhorn/issues/6">currently does not support ARM</a> so I started organizing <a href="https://github.com/orgs/kubernetes-arm/projects/2">a project for this one too</a>.</p>
+<h3 id="contributions">Contributions</h3>
+<p>The purpose of creating this blog and the [github organization][gh] were to try and encourage others with interest to join me in these projects and more that follow to make ARM Kubernetes clusters grade A. If you&rsquo;re interested in joining in <a href="mailto:info@kubernetes-arm.com">send an email!</a></p>
+<h4 id="author-shane-utthttpsgithubcomshaneutt">Author: <a href="https://github.com/shaneutt">Shane Utt</a></h4>
+</div>
+
+</main>
+
+        <footer>
+            <p class="copyright text-muted">© Kubernetes ARM Contributors - 2020</p>
+        </footer>
+
+        
+
+        
+    </body>
+
+</html>
+

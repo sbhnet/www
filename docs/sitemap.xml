@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://kubernetes-arm.com/</loc>
+    <lastmod>2020-03-29T14:00:00+04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/posts/1/</loc>
+    <lastmod>2020-03-29T14:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/authors/</loc>
+    <lastmod>2020-03-29T14:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/posts/</loc>
+    <lastmod>2020-03-29T14:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/authors/shane-utt/</loc>
+    <lastmod>2020-03-29T14:00:00+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/about/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://kubernetes-arm.com/tags/</loc>
+  </url>
+  
+</urlset>
